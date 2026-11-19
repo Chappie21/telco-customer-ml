@@ -129,6 +129,21 @@ rechaza datos inválidos y que CORS funciona.
 
 ### Endpoints
 
+Ejemplo de predicción (con la API corriendo por Docker o en local):
+
+```bash
+curl -X POST http://localhost:8000/predict -H 'content-type: application/json' -d '{
+  "senior_citizen": 0, "partner": 0, "dependents": 0, "tenure": 1,
+  "phone_service": 1, "multiple_lines": 0, "online_security": 0, "online_backup": 0,
+  "device_protection": 0, "tech_support": 0, "streaming_tv": 0, "streaming_movies": 0,
+  "paperless_billing": 1, "monthly_charges": 70.7, "total_charges": 70.7,
+  "internet_service": "fiber_optic", "contract": "month_to_month", "payment_method": "electronic_check"}'
+# {"logistic_regression":{"churn_probability":0.7023},"neural_network":{"churn_probability":0.6972}}
+```
+
+El mismo cuerpo enviado a `/segment` devuelve el segmento «Fibra, mes a mes». Los modelos entregan solo
+la probabilidad; con el umbral recomendado (0,134, ver notebook 05) este cliente se contactaría.
+
 - `GET /health`
 - `POST /predict` → `{"logistic_regression": {...}, "neural_network": {...}}`, cada uno con `churn_probability`
 - `GET /segments` → segmentos K-Means (nombre, clientes, abandono, ingreso en riesgo) y muestra del mapa 2D
