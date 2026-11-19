@@ -9,7 +9,9 @@ Uso (desde ml/): .venv/bin/python -m pipeline.train_logistic
 - El modelo entrega SOLO la probabilidad (predict_proba). La decisión de contactar se toma fuera.
 - Precisión/recall necesitan un corte para contar aciertos; se reportan con 0.5 solo como referencia.
 
-Salidas: ml/models/churn_logistic.joblib (lo usa la API) y ml/reports/metrics/metrics_logistic.json
+Salidas: ml/models/churn_logistic.joblib (lo usa la API), ml/models/churn_logistic.json (perfil promedio
+de entrenamiento: referencia para explicar cada predicción, ver app/api/src/services/explain.py) y
+ml/reports/metrics/metrics_logistic.json
 """
 import json
 
@@ -58,6 +60,9 @@ def main() -> None:
     }
     paths.MODELS.mkdir(parents=True, exist_ok=True)
     joblib.dump(model, paths.LOGISTIC_MODEL)
+    # Perfil promedio (media de cada columna en entrenamiento): punto desde el que se miden los aportes
+    paths.LOGISTIC_MODEL.with_suffix(".json").write_text(json.dumps(
+        {"feature_columns": list(X_train.columns), "reference": X_train.mean().round(6).to_dict()}, indent=2))
     paths.metrics("metrics_logistic.json").write_text(
         json.dumps({k: round(v, 4) if isinstance(v, float) else v for k, v in metrics.items()}, indent=2))
     print(f"CV AUC {metrics['cv_auc_mean']:.3f} · Test AUC {metrics['auc']:.3f} · AP {metrics['average_precision']:.3f}")

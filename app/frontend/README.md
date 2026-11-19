@@ -13,7 +13,7 @@ npm run build && npm start      # producción
 src/
   app/          layout, página y tokens globales (globals.css)
   components/   Header, ChurnComparison (estado), CustomerForm, ExampleSwitcher,
-                ResultPanel, RiskScale, ReliabilityTable (+ CSS modules)
+                ResultPanel, RiskScale, ExplanationPanel (+ CSS modules)
   lib/          api (cliente /predict), config, examples, models (métricas de prueba)
   types/        contrato Customer / Prediction (igual que la API)
   utils/        customerForm (reglas de coherencia + validación), format

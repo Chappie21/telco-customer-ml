@@ -12,12 +12,10 @@ export interface ModelInfo {
   short: string;
   color: string;
   auc: number;
-  precision: number;
-  recall: number;
 }
 
 /** Orden de presentación en toda la página. */
 export const MODELS: ModelInfo[] = [
-  { key: "logistic_regression", name: "Regresión logística", short: "Logística", color: "var(--model-logistic)", auc: 0.842, precision: 0.652, recall: 0.551 },
-  { key: "neural_network", name: "Red neuronal", short: "Red", color: "var(--model-neural)", auc: 0.836, precision: 0.65, recall: 0.497 },
+  { key: "logistic_regression", name: "Regresión logística", short: "Logística", color: "var(--model-logistic)", auc: 0.842 },
+  { key: "neural_network", name: "Red neuronal", short: "Red", color: "var(--model-neural)", auc: 0.836 },
 ];

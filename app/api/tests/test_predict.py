@@ -5,6 +5,7 @@ la probabilidad de /predict debe coincidir con la del modelo usado directamente.
 """
 import pandas as pd
 from fastapi.testclient import TestClient
+from scipy.special import expit, logit
 
 from src.core.config import REPO_ROOT
 from src.main import app
@@ -62,7 +63,22 @@ with TestClient(app) as client:
         assert r["segment"]["id"] == ids[i] and abs(r["position"]["x"] - pos[i, 0]) < 1e-3, r
     assert client.post("/segment", json=bad[0]).status_code == 422
 
+    # /explain: los aportes reconstruyen exactamente la probabilidad de la logística, y cada acción
+    # es la probabilidad del modelo con ese único dato cambiado
+    lr = expected["logistic_regression"]
+    for i, (_, row) in enumerate(df.iterrows()):
+        req = row_to_request(row)
+        e = client.post("/explain", json=req).json()
+        assert abs(e["churn_probability"] - lr[i]) < 1e-4, e
+        total = logit(e["reference_probability"]) + sum(f["log_odds"] for f in e["factors"])
+        assert abs(expit(total) - lr[i]) < 1e-3, (total, lr[i])
+        for a in e["actions"]:
+            assert a["churn_probability"] < e["churn_probability"]
+            q = client.post("/predict", json={**req, a["field"]: a["value"]}).json()["logistic_regression"]["churn_probability"]
+            assert abs(q - a["churn_probability"]) < 1e-4, a
+    assert client.post("/explain", json=bad[0]).status_code == 422
+
     pre = client.options("/predict", headers={"Origin": "http://localhost:3000", "Access-Control-Request-Method": "POST"})
     assert pre.headers.get("access-control-allow-origin") == "http://localhost:3000", "CORS"
 
-print("OK: 50 clientes reales coinciden con los 2 modelos y K-Means; 6 entradas inválidas rechazadas; CORS ok")
+print("OK: 50 clientes reales coinciden con los 2 modelos y K-Means; /explain suma exacta; 6 entradas inválidas rechazadas; CORS ok")

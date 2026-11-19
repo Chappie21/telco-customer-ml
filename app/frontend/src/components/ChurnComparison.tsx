@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { Prediction, SegmentAssignment, SegmentsInfo } from "@/types/customer";
-import { ApiError, classify, getSegments, predict } from "@/lib/api";
+import type { Customer, Explanation, Prediction, SegmentAssignment, SegmentsInfo } from "@/types/customer";
+import { ApiError, classify, explain, getSegments, predict } from "@/lib/api";
 import { EXAMPLES } from "@/lib/examples";
 import { applyRules, parseForm, toFormState, type FormState } from "@/utils/customerForm";
 import CustomerForm from "./CustomerForm";
 import ExampleSwitcher from "./ExampleSwitcher";
-import ReliabilityTable from "./ReliabilityTable";
+import ExplanationPanel from "./ExplanationPanel";
 import ResultPanel from "./ResultPanel";
 import SegmentPanel from "./SegmentPanel";
 import ViewTabs, { type View } from "./ViewTabs";
@@ -21,6 +21,8 @@ export default function ChurnComparison() {
   const [exampleId, setExampleId] = useState<string | null>(null);
   const [view, setView] = useState<View>("models");
   const [prediction, setPrediction] = useState<Prediction | null>(null);
+  // Se guarda con el cliente que la produjo: si el formulario queda inválido, sigue siendo coherente
+  const [explained, setExplained] = useState<{ explanation: Explanation; customer: Customer } | null>(null);
   const [assignment, setAssignment] = useState<SegmentAssignment | null>(null);
   const [segmentsInfo, setSegmentsInfo] = useState<SegmentsInfo | null>(null);
   const [loading, setLoading] = useState(false);
@@ -41,8 +43,11 @@ export default function ChurnComparison() {
     const timer = setTimeout(async () => {
       setLoading(true);
       try {
-        if (view === "models") setPrediction(await predict(parsed.customer, ctrl.signal));
-        else setAssignment(await classify(parsed.customer, ctrl.signal));
+        if (view === "models") {
+          const [p, e] = await Promise.all([predict(parsed.customer, ctrl.signal), explain(parsed.customer, ctrl.signal)]);
+          setPrediction(p);
+          setExplained({ explanation: e, customer: parsed.customer });
+        } else setAssignment(await classify(parsed.customer, ctrl.signal));
         setApiError(null);
       } catch (e) {
         if (ctrl.signal.aborted) return;
@@ -97,7 +102,7 @@ export default function ChurnComparison() {
           {view === "models" ? (
             <div id="panel-models" role="tabpanel" aria-labelledby="tab-models" className={styles.panel}>
               <ResultPanel prediction={prediction} loading={loading && !invalid} stale={error !== null} />
-              <ReliabilityTable />
+              {explained && <ExplanationPanel {...explained} loading={loading && !invalid} />}
             </div>
           ) : (
             <div id="panel-segment" role="tabpanel" aria-labelledby="tab-segment" className={styles.panel}>

@@ -1,6 +1,6 @@
 import type { Prediction } from "@/types/customer";
-import { BASE_CHURN_RATE, MODELS } from "@/lib/models";
-import { pct, spreadPoints } from "@/utils/format";
+import { BASE_CHURN_RATE, MODELS, TEST_CUSTOMERS } from "@/lib/models";
+import { integer, pct, spreadPoints } from "@/utils/format";
 import RiskScale from "./RiskScale";
 import styles from "./ResultPanel.module.css";
 
@@ -38,6 +38,9 @@ export default function ResultPanel({ prediction, loading, stale }: Props) {
       <RiskScale prediction={prediction} />
       <p className={styles.note}>
         Entre ambos modelos hay <strong>{spreadPoints(probs)} puntos</strong>. La media histórica de abandono es {pct(BASE_CHURN_RATE)}%.
+      </p>
+      <p className={styles.auc}>
+        AUC en {integer(TEST_CUSTOMERS)} clientes no vistos al entrenar: {MODELS.map((m) => `${m.short} ${m.auc.toFixed(3)}`).join(" · ")} (1 = ordena perfecto, 0.5 = azar).
       </p>
       {stale && !loading && <p className={styles.stale}>Este resultado corresponde a los últimos datos válidos.</p>}
     </section>

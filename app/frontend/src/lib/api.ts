@@ -1,4 +1,4 @@
-import type { Customer, Prediction, SegmentAssignment, SegmentsInfo } from "@/types/customer";
+import type { Customer, Explanation, Prediction, SegmentAssignment, SegmentsInfo } from "@/types/customer";
 import { API_URL } from "./config";
 
 export class ApiError extends Error {}
@@ -28,6 +28,9 @@ async function request<T>(path: string, signal?: AbortSignal, body?: unknown): P
 
 /** POST /predict: probabilidad de abandono de cada modelo. */
 export const predict = (customer: Customer, signal?: AbortSignal) => request<Prediction>("/predict", signal, customer);
+
+/** POST /explain: por qué la regresión logística estima esa probabilidad. */
+export const explain = (customer: Customer, signal?: AbortSignal) => request<Explanation>("/explain", signal, customer);
 
 /** POST /segment: segmento K-Means del cliente y su posición en el mapa. */
 export const classify = (customer: Customer, signal?: AbortSignal) => request<SegmentAssignment>("/segment", signal, customer);

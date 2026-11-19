@@ -68,3 +68,19 @@ export interface SegmentAssignment {
   segment: Segment;
   position: { x: number; y: number };
 }
+
+// Mismo contrato que app/api/src/schemas/explanation.py (solo regresión logística)
+export interface Factor {
+  /** Campo de Customer; "tenure" incluye cargo acumulado e "internet_service" el cargo mensual */
+  factor: string;
+  log_odds: number;
+  /** Puntos que bajaría la probabilidad si el factor fuera el del perfil promedio */
+  points: number;
+}
+
+export interface Explanation {
+  reference_probability: number;
+  churn_probability: number;
+  factors: Factor[];
+  actions: { field: keyof Customer; value: string | boolean; churn_probability: number }[];
+}
