@@ -53,7 +53,7 @@ Los modelos devuelven solo la probabilidad de abandono; el umbral de contacto es
 
 ### 2. Notebooks (análisis)
 
-`make notebooks` los ejecuta y guarda sus resultados; también se pueden abrir con Jupyter (`.venv/bin/jupyter lab`).
+`make notebooks` los ejecuta y guarda sus resultados (en GitHub se ven con gráficos sin ejecutar nada). Para abrirlos: VS Code con la extensión Jupyter eligiendo el kernel `ml/.venv`, o `ml/.venv/bin/pip install jupyterlab && ml/.venv/bin/jupyter lab ml/notebooks`.
 
 | Notebook | Contenido |
 |---|---|
