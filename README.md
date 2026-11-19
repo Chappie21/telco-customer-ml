@@ -33,7 +33,7 @@ app/
 | API y web sin Docker | Python 3.12 y Node.js 22 o superior |
 
 ```bash
-git clone https://github.com/andreschaparro-melt/telco-customer-ml.git
+git clone https://github.com/Chappie21/telco-customer-ml.git
 cd telco-customer-ml
 ```
 
