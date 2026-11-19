@@ -1,0 +1,29 @@
+{
+  "feature_columns": [
+    "senior_citizen",
+    "partner",
+    "dependents",
+    "tenure",
+    "phone_service",
+    "multiple_lines",
+    "online_security",
+    "online_backup",
+    "device_protection",
+    "tech_support",
+    "streaming_tv",
+    "streaming_movies",
+    "paperless_billing",
+    "monthly_charges",
+    "total_charges",
+    "internet_service_dsl",
+    "internet_service_fiber_optic",
+    "internet_service_no",
+    "contract_month_to_month",
+    "contract_one_year",
+    "contract_two_year",
+    "payment_method_bank_transfer_automatic",
+    "payment_method_credit_card_automatic",
+    "payment_method_electronic_check",
+    "payment_method_mailed_check"
+  ]
+}

@@ -1,0 +1,11 @@
+numpy==2.5.5
+pandas==3.1.1
+scipy==1.18.1
+matplotlib==3.11.2
+scikit-learn==1.9.1
+keras==3.15.1
+tensorflow==2.21.0  # backend for keras 3
+# notebooks (ejecutar y guardar resultados)
+nbconvert==7.17.2
+nbformat==5.11.1
+ipykernel==7.4.0

@@ -1,0 +1,5 @@
+,parametros,parametros,mejor_epoca,mejor_epoca,auc_train,auc_train,auc_val,auc_val,auc_test,auc_test,logloss_val,logloss_val,logloss_test,logloss_test,umbral_validacion,umbral_validacion,costo_test_usd,costo_test_usd,brecha_auc,brecha_auc
+,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std
+arquitectura,,,,,,,,,,,,,,,,,,,,
+32-16,1377.0,0.0,17.0,11.2472,0.8601,0.0078,0.844,0.0022,0.8377,0.0034,0.4184,0.0019,0.4252,0.0036,0.0816,0.0364,10626.0,102.0662,0.0224,0.006
+64-32-16,4289.0,0.0,8.0,2.4495,0.8621,0.005,0.8442,0.0034,0.8358,0.0019,0.4176,0.0028,0.4278,0.0026,0.0959,0.0364,10716.0,236.3631,0.0263,0.0055

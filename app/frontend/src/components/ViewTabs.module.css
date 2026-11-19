@@ -1,0 +1,9 @@
+.tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); }
+.tab {
+  min-height: 40px; padding: 0 12px; border: 0; border-radius: var(--radius-control);
+  background: transparent; color: var(--muted); font-size: 14px; font-weight: 500; cursor: pointer;
+  transition: background-color 160ms ease-out, color 160ms ease-out;
+}
+.tab:hover { color: var(--text); background: var(--raised); }
+.tab[aria-selected="true"] { background: var(--accent-soft); color: var(--accent-ink); font-weight: 600; }
+@media (max-width: 420px) { .tab { font-size: 13px; padding: 0 8px; } }

@@ -1,0 +1,50 @@
+{
+  "auc": 0.8360717145883386,
+  "average_precision": 0.6162665063224683,
+  "precision@0.5": 0.6503496503496503,
+  "recall@0.5": 0.49732620320855614,
+  "confusion_matrix": [
+    [
+      935,
+      100
+    ],
+    [
+      188,
+      186
+    ]
+  ],
+  "n_train": 4507,
+  "n_validation": 1127,
+  "n_test": 1409,
+  "seed": 42,
+  "threshold": 0.5,
+  "epochs_run": 28,
+  "best_epoch": 16,
+  "feature_columns": [
+    "senior_citizen",
+    "partner",
+    "dependents",
+    "tenure",
+    "phone_service",
+    "multiple_lines",
+    "online_security",
+    "online_backup",
+    "device_protection",
+    "tech_support",
+    "streaming_tv",
+    "streaming_movies",
+    "paperless_billing",
+    "monthly_charges",
+    "total_charges",
+    "internet_service_dsl",
+    "internet_service_fiber_optic",
+    "internet_service_no",
+    "contract_month_to_month",
+    "contract_one_year",
+    "contract_two_year",
+    "payment_method_bank_transfer_automatic",
+    "payment_method_credit_card_automatic",
+    "payment_method_electronic_check",
+    "payment_method_mailed_check"
+  ]
+}

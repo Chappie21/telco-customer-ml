@@ -1,0 +1,8 @@
+.map { display: block; width: 100%; height: auto; background: var(--raised); border-radius: var(--radius-card); }
+.point { opacity: 0.42; transition: opacity 200ms ease-out; }
+.faded { opacity: 0.06; transition: opacity 200ms ease-out; }
+.customer { transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1); }
+.label {
+  font-size: 15px; font-weight: 600; fill: var(--text);
+  paint-order: stroke; stroke: var(--raised); stroke-width: 5px; stroke-linejoin: round;
+}

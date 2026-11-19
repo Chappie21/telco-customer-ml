@@ -1,0 +1,8 @@
+.group { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); }
+.option {
+  min-height: 36px; padding: 0 14px; border: 0; border-radius: var(--radius-control);
+  background: transparent; color: var(--muted); font-size: 13px; font-weight: 500; cursor: pointer;
+  transition: background-color 160ms ease-out, color 160ms ease-out;
+}
+.option:hover { color: var(--text); background: var(--raised); }
+.option[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent-ink); }

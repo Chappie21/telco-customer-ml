@@ -1,0 +1,15 @@
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: var(--pad); display: flex; flex-direction: column; gap: 12px; }
+.title { font-size: 18px; font-weight: 600; }
+.lead { font-size: 14px; color: var(--text-2); }
+.table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.table th { font-weight: 500; color: var(--muted); text-align: left; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.table td { padding: 12px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.table tr:last-child td { border-bottom: 0; }
+.num { text-align: right !important; white-space: nowrap; padding-left: 16px !important; }
+.metric { font-weight: 500; }
+.explain { display: block; font-size: 13px; color: var(--muted); }
+.best { font-weight: 700; color: var(--text); }
+.table td.num:not(.best) { color: var(--text-2); }
+.foot { font-size: 12px; color: var(--muted); }
+.short { display: none; }
+@media (max-width: 560px) { .long { display: none; } .short { display: inline; } .num { padding-left: 10px !important; } .explain { font-size: 12px; } }

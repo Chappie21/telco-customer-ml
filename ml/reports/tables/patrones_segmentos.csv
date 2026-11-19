@@ -1,0 +1,17 @@
+segmento,n,pct_clientes,tasa_churn,pct_de_abandonos
+contrato=month_to_month · internet=fiber_optic · tenure≤15.5 · total_charges≤120,238,3.38,86.55,11.02
+contrato=month_to_month · internet=fiber_optic · total_charges>120 · tenure≤15.5,798,11.33,64.04,27.34
+contrato=month_to_month · internet=dsl · tenure≤5.5,463,6.57,50.76,12.57
+contrato=month_to_month · internet=fiber_optic · pago=electronic_check · tenure>15.5,598,8.49,48.16,15.41
+contrato=month_to_month · internet=fiber_optic · pago≠electronic_check · tenure>15.5,494,7.01,31.78,8.4
+contrato=month_to_month · internet≠fiber_optic · tenure>5.5 · phone_service=no,239,3.39,29.71,3.8
+contrato=one_year · monthly_charges>102,225,3.19,27.11,3.26
+contrato=month_to_month · internet=no · tenure≤5.5,280,3.98,26.79,4.01
+contrato=one_year · 93.7<monthly_charges≤102,173,2.46,16.18,1.5
+contrato=month_to_month · internet≠fiber_optic · tenure>5.5 · phone_service=si,765,10.86,14.64,5.99
+contrato=one_year · monthly_charges≤93.7 · streaming_movies=si,301,4.27,13.62,2.19
+contrato=two_year · monthly_charges>93.7 · tenure≤70.5,206,2.92,11.65,1.28
+contrato=one_year · monthly_charges≤93.7 · streaming_movies=no,774,10.99,4.65,1.93
+contrato=two_year · monthly_charges>93.7 · tenure>70.5,174,2.47,3.45,0.32
+contrato=two_year · total_charges>2447.3 · monthly_charges≤93.7,585,8.31,2.22,0.7
+contrato=two_year · monthly_charges≤93.7 · total_charges≤2447.3,730,10.36,0.68,0.27

@@ -1,0 +1,45 @@
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card);
+  padding: 28px; display: flex; flex-direction: column; gap: 24px;
+  transition: opacity 160ms ease-out;
+}
+/* Solo atenúa si la respuesta tarda */
+.dim { opacity: 0.55; transition-delay: 250ms; }
+.head { display: flex; flex-direction: column; gap: 8px; }
+.title { font-size: 18px; font-weight: 600; }
+.name { display: flex; align-items: center; gap: 10px; font-size: 28px; line-height: 1.2; font-weight: 600; letter-spacing: -0.02em; margin-top: 4px; }
+.name .swatch { width: 14px; height: 14px; border-radius: 3px; }
+.fact { font-size: 15px; line-height: 1.55; max-width: 62ch; }
+.fact strong { font-weight: 600; }
+.swatch { width: 10px; height: 10px; border-radius: 2px; flex: none; }
+.figure { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.caption { font-size: 12px; color: var(--muted); }
+
+.legend { width: 100%; border-collapse: collapse; font-size: 14px; }
+.legendTitle { text-align: left; font-size: 15px; font-weight: 600; padding-bottom: 8px; }
+.legend thead th { font-weight: 500; color: var(--muted); text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); font-size: 13px; }
+.legend tbody th, .legend td { padding: 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.legend tbody th { font-weight: 500; text-align: left; }
+.legend tbody tr:last-child > * { border-bottom: 0; }
+.legend tbody tr { cursor: default; transition: background-color 160ms ease-out; }
+.legend tbody tr:hover, .legend tbody tr:focus-visible { background: var(--raised); }
+.legend tbody tr:focus-visible { outline-offset: -2px; }
+.current > * { background: var(--accent-soft); }
+.current th { font-weight: 600; }
+.rowName { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.tag { font-size: 12px; font-weight: 600; color: var(--accent-ink); }
+.detail { display: block; font-size: 12px; font-weight: 400; color: var(--muted); margin-top: 2px; padding-left: 18px; }
+.num { text-align: right !important; white-space: nowrap; }
+.legend td.num { color: var(--text-2); }
+
+.foot { font-size: 12px; line-height: 1.5; color: var(--muted); max-width: 72ch; }
+.stale { font-size: 13px; color: var(--muted); }
+.empty { min-height: 260px; display: flex; flex-direction: column; justify-content: center; gap: 8px; color: var(--muted); font-size: 15px; max-width: 46ch; }
+.empty strong { color: var(--text); font-size: 18px; font-weight: 600; }
+@media (max-width: 560px) {
+  .card { padding: 20px; gap: 20px; }
+  .name { font-size: 22px; }
+  .clients { display: none; }
+  .legend tbody th, .legend td, .legend thead th { padding: 10px 6px; }
+  .empty { min-height: 160px; }
+}

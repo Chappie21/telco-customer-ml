@@ -1,0 +1,5 @@
+segmento,clientes,pct_clientes,tasa_abandono,ic95_bajo,ic95_alto,riesgo_medio,riesgo_p10,riesgo_p90,antiguedad_mediana,cargo_mensual_mediano,ingreso_mensual,ingreso_en_riesgo,rasgos,pct_ingreso_en_riesgo
+1,2160,30.67,54.03,51.92,56.12,54.25,28.82,74.56,16.0,85.75,187145.55,101227.16,fibra óptica 100% (total 44%); mes a mes 96% (total 55%); DSL 0% (total 34%); cheque electrónico 63% (total 34%),72.68
+2,1598,22.69,26.28,24.18,28.5,26.86,4.24,51.75,14.0,50.5,80328.75,20568.53,DSL 100% (total 34%); fibra óptica 0% (total 44%); múltiples líneas 15% (total 42%); línea telefónica 67% (total 90%),14.77
+3,1754,24.9,9.64,8.34,11.11,8.84,1.06,22.03,63.0,90.38,156116.75,15070.35,mes a mes 4% (total 55%); protección equipo 76% (total 34%); soporte técnico 68% (total 29%); streaming películas 77% (total 39%),10.82
+4,1531,21.74,7.38,6.18,8.8,7.54,0.27,20.8,25.0,20.15,32525.55,2420.95,sin internet 100% (total 22%); fibra óptica 0% (total 44%); cargo mensual ($) 20 (total 70); streaming películas 0% (total 39%),1.74
