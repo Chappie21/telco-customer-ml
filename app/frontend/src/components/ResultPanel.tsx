@@ -1,5 +1,5 @@
 import type { Prediction } from "@/types/customer";
-import { BASE_CHURN_RATE, MODELS, TEST_CUSTOMERS } from "@/lib/models";
+import { BASE_CHURN_RATE, CONTACT_THRESHOLD, MODELS, TEST_CUSTOMERS } from "@/lib/models";
 import { integer, pct, spreadPoints } from "@/utils/format";
 import RiskScale from "./RiskScale";
 import styles from "./ResultPanel.module.css";
@@ -23,6 +23,8 @@ export default function ResultPanel({ prediction, loading, stale }: Props) {
   }
 
   const probs = MODELS.map((m) => prediction[m.key].churn_probability);
+  const risk = prediction.logistic_regression.churn_probability;
+  const call = risk >= CONTACT_THRESHOLD;
 
   return (
     <section className={`${styles.card} ${loading ? styles.dim : ""}`} aria-label="Resultado" aria-busy={loading} aria-live="polite">
@@ -34,6 +36,15 @@ export default function ResultPanel({ prediction, loading, stale }: Props) {
             <span className={styles.value}>{pct(probs[i])}<span className={styles.unit}>%</span></span>
           </div>
         ))}
+      </div>
+      <div className={`${styles.decision} ${call ? styles.call : ""}`}>
+        <strong className={styles.verdict}>{call ? "Llamar a este cliente" : "No llamar por ahora"}</strong>
+        <p>
+          {call
+            ? `Su riesgo (${pct(risk)}%) supera el corte de ${pct(CONTACT_THRESHOLD)}%: con los costos de Telco, llamar sale más barato que arriesgar la baja.`
+            : `Su riesgo (${pct(risk)}%) está por debajo del corte de ${pct(CONTACT_THRESHOLD)}%: la llamada costaría más de lo que se espera perder.`}
+        </p>
+        <p className={styles.rule}>Regla recomendada: regresión logística · USD 120 por baja no detectada, USD 15 por llamada innecesaria.</p>
       </div>
       <RiskScale prediction={prediction} />
       <p className={styles.note}>
