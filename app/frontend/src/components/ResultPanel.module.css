@@ -14,6 +14,11 @@
 .swatch { width: 10px; height: 10px; border-radius: 2px; flex: none; }
 .value { font-size: clamp(30px, 8.5cqi, 56px); line-height: 1; font-weight: 600; letter-spacing: -0.03em; white-space: nowrap; }
 .unit { font-size: 0.45em; font-weight: 500; margin-left: 1px; }
+.decision { display: flex; flex-direction: column; gap: 6px; padding: 16px 18px; border-radius: var(--radius-card); background: var(--raised); font-size: 15px; line-height: 1.5; }
+.call { background: var(--accent-soft); border: 1px solid var(--accent-track); }
+.verdict { font-size: 18px; font-weight: 600; }
+.call .verdict { color: var(--accent-ink); }
+.rule { font-size: 12px; color: var(--muted); }
 .note { font-size: 15px; line-height: 1.5; }
 .note strong { font-weight: 600; }
 .stale { font-size: 13px; color: var(--muted); }
